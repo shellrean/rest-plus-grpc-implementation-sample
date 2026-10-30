@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package banking;
+
+service BankAccountGrpcService {
+  rpc FindAllAccounts (FindAllAccountsRequest) returns (FindAllAccountsResponse);
+  rpc FindAccountById (FindAccountByIdRequest) returns (FindAccountByIdResponse);
+}
+
+message FindAllAccountsRequest {}
+
+message FindAccountByIdRequest {
+  string id = 1;
+}
+
+message BankAccountGrpcItem {
+  string id = 1;
+  string account_number = 2;
+  string owner_name = 3;
+  int64 balance = 4;
+  string currency = 5;
+}
+
+message FindAllAccountsResponse {
+  repeated BankAccountGrpcItem accounts = 1;
+}
+
+message FindAccountByIdResponse {
+  BankAccountGrpcItem account = 1;
+}
